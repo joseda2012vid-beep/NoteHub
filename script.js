@@ -1,24 +1,34 @@
-const notesContainer = document.getElementById('notes-container');
-const addSectionBtn = document.getElementById('add-section');
+document.addEventListener("DOMContentLoaded", () => {
 
-function createNoteSection(text = '') {
-  const section = document.createElement('div');
-  section.className = 'note-section';
+  // Referencias
+  const noteInput = document.getElementById("noteInput");
+  const noteTitle = document.getElementById("noteTitle");
+  const saveBtn = document.getElementById("saveBtn");
+  const voiceBtn = document.getElementById("voiceBtn");
+  const notesContainer = document.getElementById("notesContainer");
+  const backgroundSelect = document.getElementById("backgroundSelect");
+  const customBg = document.getElementById("customBg");
+  const darkModeBtn = document.getElementById("darkModeBtn");
+  const searchNotes = document.getElementById("searchNotes");
+  const noteStyleSelect = document.getElementById("noteStyleSelect");
+  const noteSizeSelect = document.getElementById("noteSizeSelect");
+  const sectionSelect = document.getElementById("sectionSelect");
+  const newSectionInput = document.getElementById("newSectionInput");
+  const addSectionBtn = document.getElementById("addSectionBtn");
 
-  const textarea = document.createElement('textarea');
-  textarea.value = text;
+  // Guardar notas en localStorage
+  let notes = JSON.parse(localStorage.getItem("notes")) || [];
+  notes.forEach(n => addNote(n.title, n.text, n.style, n.size, n.section));
 
-  section.appendChild(textarea);
-  notesContainer.appendChild(section);
-}
+  // Función para agregar nota
+  function addNote(title, text, style="sheet-white", size="sheet", section="General") {
+    const note = document.createElement("div");
+    note.classList.add("note", style, size);
+    note.dataset.section = section;
 
-// Agregar sección nueva al presionar el botón
-addSectionBtn.addEventListener('click', () => {
-  createNoteSection();
-});
-
-// Crear una sección inicial al cargar la página
-createNoteSection('Escribe tu nota aquí...');
+    const titleEl = document.createElement("h3");
+    titleEl.textContent = title;
+    note.append
 
 
 
