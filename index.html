@@ -13,14 +13,24 @@
   </header>
 
   <main>
-    <div class="note-container" id="noteContainer">
-      <!-- Las notas se cargarán aquí -->
+    <div class="controls">
+      <button id="addNoteBtn">➕ Agregar nota</button>
+      <select id="sheetType">
+        <option value="white">Hoja blanca</option>
+        <option value="lined">Rayada</option>
+        <option value="grid">Cuadriculada</option>
+      </select>
+      <button id="voiceBtn">🎤 Por voz</button>
     </div>
-    <button id="addNoteBtn">➕ Agregar nota</button>
+
+    <div class="note-container" id="noteContainer">
+      <!-- Notas se añadirán aquí -->
+    </div>
   </main>
 
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
