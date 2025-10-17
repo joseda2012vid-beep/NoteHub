@@ -3,34 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NoteHub</title>
+  <title>NoteHub 📝</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="Logo NoteHub" class="logo">
-    <h1>📝 NoteHub</h1>
-  </header>
+  <div class="header">
+    <img src="logo.png" alt="NoteHub Logo" class="logo">
+    <h1>NoteHub 📝</h1>
+  </div>
 
-  <main>
-    <div class="controls">
-      <button id="addNoteBtn">➕ Agregar nota</button>
-      <select id="sheetType">
-        <option value="white">Hoja blanca</option>
-        <option value="lined">Rayada</option>
-        <option value="grid">Cuadriculada</option>
-      </select>
-      <button id="voiceBtn">🎤 Por voz</button>
-    </div>
+  <div id="notes-container">
+    <!-- Secciones de notas aparecerán aquí -->
+  </div>
 
-    <div class="note-container" id="noteContainer">
-      <!-- Notas se añadirán aquí -->
-    </div>
-  </main>
+  <button id="add-section">➕ Agregar sección</button>
 
   <script src="script.js"></script>
 </body>
 </html>
-
-
 
