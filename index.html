@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NoteHub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+    <!-- Agregar esto para el logo -->
+  <link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="images/logo.png">
+
+</head>
+<body>
+  <header>
+    <h1>NoteHub</h1>
+    <div class="top-controls">
+      <!-- Fondo -->
+      <select id="backgroundSelect">
+        <option value="">Fondo...</option>
+        <option value="white">Blanco</option>
+        <option value="gradient">Degradado</option>
+        <option value="space">Espacio</option>
+        <option value="forest">Bosque</option>
+        <option value="beach">Playa</option>
+        <option value="mountain">Montaña</option>
+      </select>
+      <input type="file" id="customBg" accept="image/*">
+      
+      <!-- Modo oscuro -->
+      <button id="darkModeBtn">🌙</button>
+
+      <!-- Secciones -->
+      <select id="sectionSelect">
+        <option value="General">General</option>
+        <option value="Trabajo">Trabajo</option>
+        <option value="Personal">Personal</option>
+      </select>
+      <input type="text" id="newSectionInput" placeholder="+ Nueva sección">
+      <button id="addSectionBtn">➕</button>
+
+      <!-- Buscar -->
+      <input type="text" id="searchNotes" placeholder="🔍 Buscar...">
+    </div>
+  </header>
+
+  <!-- Área de escritura -->
+  <div class="editor-container">
+    <input type="text" id="noteTitle" placeholder="Título de la nota">
+    <textarea id="noteInput" placeholder="✍️ Escribe tu nota aquí..."></textarea>
+    
+    <div class="editor-controls">
+      <select id="noteStyleSelect">
+        <option value="sheet-white">Hoja blanca</option>
+        <option value="sheet-lined">Hoja rayada</option>
+        <option value="sheet-grid">Hoja cuadriculada</option>
+      </select>
+      <select id="noteSizeSelect">
+        <option value="sheet">Hoja de carta</option>
+        <option value="card">Tarjeta</option>
+      </select>
+      <button id="saveBtn" title="Guardar nota">💾</button>
+      <button id="voiceBtn" title="Escritura por voz">🎤</button>
+    </div>
+  </div>
+
+  <!-- Contenedor de notas -->
+  <div id="notesContainer"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
