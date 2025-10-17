@@ -1,55 +1,27 @@
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #f3f4f6;
   margin: 0;
   padding: 20px;
-  color: #222;
+  background-color: #f5f5f5;
+  transition: background 0.3s ease;
 }
 
 h1 {
   text-align: center;
-  color: #2d3748;
 }
 
-#controls {
-  max-width: 700px;
-  margin: 0 auto 30px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-  padding: 20px;
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
-textarea {
-  width: 100%;
-  height: 100px;
-  margin: 10px 0;
-  padding: 10px;
+textarea, input, select, button {
   font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-}
-
-input[type="text"], select {
   padding: 8px;
-  margin: 5px;
-  font-size: 15px;
   border-radius: 6px;
   border: 1px solid #ccc;
-}
-
-button {
-  background-color: #3182ce;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-button:hover {
-  background-color: #2b6cb0;
 }
 
 #notesContainer {
@@ -57,25 +29,27 @@ button:hover {
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
+  margin-top: 20px;
 }
 
-/* --- ESTILOS DE NOTAS --- */
+/* Nota */
 .note {
   position: relative;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-  transition: transform 0.2s;
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+  cursor: pointer;
 }
 
 .note:hover {
   transform: scale(1.03);
 }
 
+/* Tamaños */
 .sheet {
   width: 250px;
   height: 250px;
@@ -86,17 +60,13 @@ button:hover {
   height: 150px;
 }
 
-/* Fondos */
+/* Estilos de hoja */
 .sheet-white {
   background-color: #fff;
 }
 
 .sheet-lined {
-  background: repeating-linear-gradient(
-    white,
-    white 28px,
-    #d0d0d0 29px
-  );
+  background: repeating-linear-gradient(white, white 28px, #d0d0d0 29px);
 }
 
 .sheet-grid {
@@ -109,7 +79,7 @@ button:hover {
 /* Botón eliminar */
 .deleteBtn {
   position: absolute;
-  top: 5px;
+  top: 6px;
   right: 10px;
   color: #333;
   font-weight: bold;
@@ -117,12 +87,14 @@ button:hover {
   cursor: pointer;
 }
 
-/* Selectores */
-.selectors, .sections {
-  margin-bottom: 10px;
+/* Modo oscuro */
+body.dark {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
 }
 
-h2 {
-  text-align: center;
-  color: #4a5568;
+body.dark .note {
+  box-shadow: 0 3px 8px rgba(255,255,255,0.1);
 }
+
+
