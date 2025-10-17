@@ -1,42 +1,75 @@
 const addNoteBtn = document.getElementById('addNoteBtn');
 const noteContainer = document.getElementById('noteContainer');
+const sheetTypeSelect = document.getElementById('sheetType');
+const voiceBtn = document.getElementById('voiceBtn');
 
-// Función para guardar notas en el localStorage
+let recognition;
+
+// Crear nota
+function createNote(text = "Escribe tu nota...", sheet = "white") {
+  const note = document.createElement('div');
+  note.classList.add('note', sheet);
+  note.setAttribute('contenteditable', 'true');
+  note.innerHTML = text;
+
+  const deleteBtn = document.createElement('button');
+  deleteBtn.textContent = '✖';
+  deleteBtn.classList.add('deleteBtn');
+  deleteBtn.onclick = () => {
+    note.remove();
+    saveNotes();
+  };
+
+  note.appendChild(deleteBtn);
+
+  note.addEventListener('input', saveNotes);
+
+  noteContainer.appendChild(note);
+  saveNotes();
+}
+
+// Guardar notas en localStorage
 function saveNotes() {
   const notes = [];
   document.querySelectorAll('.note').forEach(note => {
-    notes.push(note.innerHTML);
+    notes.push({
+      text: note.innerText,
+      sheet: note.classList.contains('lined') ? 'lined' :
+             note.classList.contains('grid') ? 'grid' : 'white'
+    });
   });
   localStorage.setItem('notes', JSON.stringify(notes));
 }
 
-// Función para cargar notas del localStorage
+// Cargar notas
 function loadNotes() {
   const savedNotes = JSON.parse(localStorage.getItem('notes')) || [];
-  savedNotes.forEach(text => {
-    createNote(text);
-  });
+  savedNotes.forEach(n => createNote(n.text, n.sheet));
 }
 
-// Función para crear una nota
-function createNote(text = "Escribe tu nota aquí...") {
-  const newNote = document.createElement('div');
-  newNote.classList.add('note');
-  newNote.setAttribute('contenteditable', 'true');
-  newNote.innerHTML = text;
-
-  // Guardar cada cambio automáticamente
-  newNote.addEventListener('input', saveNotes);
-
-  noteContainer.appendChild(newNote);
-  saveNotes();
-}
-
-// Evento para agregar nuevas notas
+// Botón agregar nota
 addNoteBtn.addEventListener('click', () => {
-  createNote();
+  const type = sheetTypeSelect.value;
+  createNote("", type);
 });
 
-// Cargar notas al iniciar la página
+// Reconocimiento por voz
+if ('webkitSpeechRecognition' in window) {
+  recognition = new webkitSpeechRecognition();
+  recognition.lang = 'es-ES';
+  recognition.continuous = false;
+
+  voiceBtn.addEventListener('click', () => {
+    recognition.start();
+  });
+
+  recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript;
+    createNote(transcript, sheetTypeSelect.value);
+  };
+}
+
 window.addEventListener('load', loadNotes);
+
+
 
