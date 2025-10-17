@@ -2,57 +2,25 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NoteHub</title>
-  <link rel="icon" href="logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>🗒️ NoteHub</h1>
-
-  <div class="controls">
-    <input id="noteTitle" type="text" placeholder="Título de la nota">
-    <textarea id="noteInput" placeholder="Escribe tu nota..."></textarea>
-    
-    <div class="selectors">
-      <select id="noteStyleSelect">
-        <option value="sheet-white">Hoja blanca</option>
-        <option value="sheet-lined">Hoja rayada</option>
-        <option value="sheet-grid">Hoja cuadriculada</option>
-      </select>
-
-      <select id="noteSizeSelect">
-        <option value="sheet">Carta</option>
-        <option value="card">Tarjeta</option>
-      </select>
-
-      <select id="sectionSelect">
-        <option value="General">General</option>
-      </select>
-      <input id="newSectionInput" type="text" placeholder="Nueva sección">
-      <button id="addSectionBtn">+</button>
+  <div class="app-container">
+    <h1>NoteHub</h1>
+    <div class="add-note">
+      <input type="text" id="note-title" placeholder="Título de la nota" />
+      <textarea id="note-text" placeholder="Escribe tu nota aquí..."></textarea>
+      <button id="add-btn">Agregar nota</button>
     </div>
 
-    <button id="saveBtn">💾 Guardar nota</button>
-    <button id="voiceBtn">🎙️ Voz</button>
-    <button id="darkModeBtn">🌙 Modo oscuro</button>
-
-    <input id="searchNotes" type="text" placeholder="Buscar notas...">
-
-    <select id="backgroundSelect">
-      <option value="white">Fondo blanco</option>
-      <option value="gradient">Degradado</option>
-      <option value="space">Espacio</option>
-      <option value="forest">Bosque</option>
-      <option value="beach">Playa</option>
-      <option value="mountain">Montaña</option>
-    </select>
-    <input id="customBg" type="file" accept="image/*">
+    <div id="notes-container"></div>
   </div>
-
-  <div id="notesContainer"></div>
 
   <script src="script.js"></script>
 </body>
 </html>
+
+
