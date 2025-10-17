@@ -1,14 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
+
   const noteInput = document.getElementById("noteInput");
   const noteTitle = document.getElementById("noteTitle");
   const saveBtn = document.getElementById("saveBtn");
+  const voiceBtn = document.getElementById("voiceBtn");
   const notesContainer = document.getElementById("notesContainer");
+  const backgroundSelect = document.getElementById("backgroundSelect");
+  const customBg = document.getElementById("customBg");
+  const darkModeBtn = document.getElementById("darkModeBtn");
+  const searchNotes = document.getElementById("searchNotes");
   const noteStyleSelect = document.getElementById("noteStyleSelect");
   const noteSizeSelect = document.getElementById("noteSizeSelect");
   const sectionSelect = document.getElementById("sectionSelect");
   const newSectionInput = document.getElementById("newSectionInput");
   const addSectionBtn = document.getElementById("addSectionBtn");
-  const currentSectionLabel = document.getElementById("currentSection");
 
   let notes = JSON.parse(localStorage.getItem("notes")) || [];
   let currentSection = "General";
@@ -19,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
     notesContainer.innerHTML = "";
     const filtered = notes.filter(n => n.section === currentSection);
     filtered.forEach(n => addNote(n.title, n.text, n.style, n.size, n.section));
-    currentSectionLabel.textContent = currentSection;
   }
 
   function addNote(title, text, style="sheet-white", size="sheet", section="General") {
@@ -35,23 +39,23 @@ document.addEventListener("DOMContentLoaded", () => {
     textEl.textContent = text;
     note.appendChild(textEl);
 
-    // Editar nota (doble clic)
+    // Editar nota con doble clic
     note.addEventListener("dblclick", () => {
       const newTitle = prompt("Editar título:", titleEl.textContent);
       const newText = prompt("Editar texto:", textEl.textContent);
       if (newTitle !== null && newText !== null) {
         titleEl.textContent = newTitle;
         textEl.textContent = newText;
-        const index = notes.findIndex(n => n.title === title && n.text === text && n.section === section);
-        if (index !== -1) {
-          notes[index].title = newTitle;
-          notes[index].text = newText;
+        const i = notes.findIndex(n => n.title === title && n.text === text && n.section === section);
+        if (i !== -1) {
+          notes[i].title = newTitle;
+          notes[i].text = newText;
           localStorage.setItem("notes", JSON.stringify(notes));
         }
       }
     });
 
-    // Eliminar nota
+    // Botón eliminar
     const delBtn = document.createElement("div");
     delBtn.textContent = "×";
     delBtn.classList.add("deleteBtn");
@@ -96,7 +100,85 @@ document.addEventListener("DOMContentLoaded", () => {
     currentSection = e.target.value;
     renderNotes();
   });
+
+  // Fondo personalizable
+  backgroundSelect.addEventListener("change", (e) => {
+    const value = e.target.value;
+    let bgUrl = "";
+    if(value === "white"){ document.body.style.backgroundImage = "none"; document.body.style.backgroundColor = "#ffffff"; return; }
+    else if(value === "gradient"){ document.body.style.backgroundImage = "linear-gradient(135deg, #74ABE2, #5563DE)"; }
+    else if(value === "space"){ bgUrl="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa"; }
+    else if(value === "forest"){ bgUrl="https://images.unsplash.com/photo-1501785888041-af3ef285b470"; }
+    else if(value === "beach"){ bgUrl="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"; }
+    else if(value === "mountain"){ bgUrl="https://images.unsplash.com/photo-1508264165352-258859e62245"; }
+
+    if(bgUrl){ document.body.style.backgroundImage = `url(${bgUrl})`; }
+    document.body.style.backgroundSize="cover";
+    document.body.style.backgroundPosition="center";
+    document.body.style.backgroundRepeat="no-repeat";
+  });
+
+  customBg.addEventListener("change", (e)=>{
+    const file = e.target.files[0];
+    if(file){
+      const reader = new FileReader();
+      reader.onload = function(event){
+        document.body.style.backgroundImage = `url(${event.target.result})`;
+        document.body.style.backgroundSize="cover";
+        document.body.style.backgroundPosition="center";
+        document.body.style.backgroundRepeat="no-repeat";
+      }
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // Modo oscuro
+  darkModeBtn.addEventListener("click", ()=>{
+    document.body.classList.toggle("dark");
+    if(document.body.classList.contains("dark")) document.body.style.backgroundColor="#1e1e1e";
+    else document.body.style.backgroundColor="#f5f5f5";
+  });
+
+  // Búsqueda de notas
+  searchNotes.addEventListener("input", (e)=>{
+    const q = e.target.value.toLowerCase();
+    document.querySelectorAll(".note").forEach(n=>{
+      n.style.display = (n.querySelector("h3").textContent.toLowerCase().includes(q) ||
+                         n.querySelector("p").textContent.toLowerCase().includes(q))
+                         ? "flex" : "none";
+    });
+  });
+
+  // Escritura por voz
+  let recognition;
+  if('webkitSpeechRecognition' in window){
+    recognition = new webkitSpeechRecognition();
+    recognition.continuous = true;
+    recognition.lang = 'es-ES';
+
+    voiceBtn.addEventListener("click", () => {
+      if(voiceBtn.dataset.recording === "true"){
+        recognition.stop();
+        voiceBtn.dataset.recording = "false";
+        voiceBtn.style.background = "#4a90e2";
+      } else {
+        recognition.start();
+        voiceBtn.dataset.recording = "true";
+        voiceBtn.style.background = "#2ecc71";
+      }
+    });
+
+    recognition.onresult = (event) => {
+      let transcript = event.results[event.results.length-1][0].transcript;
+      noteInput.value += transcript + " ";
+    }
+  } else {
+    voiceBtn.disabled = true;
+    voiceBtn.title = "No soportado en este navegador";
+  }
+
 });
+
 
 
 
