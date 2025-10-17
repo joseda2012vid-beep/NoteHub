@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NoteHub</title>
+  <link rel="icon" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>📝 NoteHub</h1>
+  <h1>🗒️ NoteHub</h1>
 
-  <div id="controls">
-    <input type="text" id="noteTitle" placeholder="Título de la nota">
+  <div class="controls">
+    <input id="noteTitle" type="text" placeholder="Título de la nota">
     <textarea id="noteInput" placeholder="Escribe tu nota..."></textarea>
     
     <div class="selectors">
@@ -21,23 +23,34 @@
       </select>
 
       <select id="noteSizeSelect">
-        <option value="sheet">Tamaño carta</option>
+        <option value="sheet">Carta</option>
         <option value="card">Tarjeta</option>
       </select>
-    </div>
 
-    <div class="sections">
       <select id="sectionSelect">
         <option value="General">General</option>
       </select>
-      <input type="text" id="newSectionInput" placeholder="Nueva sección...">
-      <button id="addSectionBtn">➕ Agregar sección</button>
+      <input id="newSectionInput" type="text" placeholder="Nueva sección">
+      <button id="addSectionBtn">+</button>
     </div>
 
     <button id="saveBtn">💾 Guardar nota</button>
+    <button id="voiceBtn">🎙️ Voz</button>
+    <button id="darkModeBtn">🌙 Modo oscuro</button>
+
+    <input id="searchNotes" type="text" placeholder="Buscar notas...">
+
+    <select id="backgroundSelect">
+      <option value="white">Fondo blanco</option>
+      <option value="gradient">Degradado</option>
+      <option value="space">Espacio</option>
+      <option value="forest">Bosque</option>
+      <option value="beach">Playa</option>
+      <option value="mountain">Montaña</option>
+    </select>
+    <input id="customBg" type="file" accept="image/*">
   </div>
 
-  <h2>Sección actual: <span id="currentSection">General</span></h2>
   <div id="notesContainer"></div>
 
   <script src="script.js"></script>
