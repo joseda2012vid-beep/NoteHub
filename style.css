@@ -1,90 +1,119 @@
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #f5f6fa;
+  background-color: #f5f5f5;
   margin: 0;
   padding: 20px;
-}
-
-.app-container {
-  max-width: 700px;
-  margin: auto;
-  background: white;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  color: #333;
+  text-align: center;
 }
 
 h1 {
-  text-align: center;
-  color: #333;
+  margin-bottom: 20px;
 }
 
-.add-note {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+#controls {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: inline-block;
+  width: 90%;
+  max-width: 600px;
+  margin-bottom: 30px;
 }
 
-.add-note input,
-.add-note textarea {
+#noteTitle, #noteInput, select, button, #newSectionInput, #searchNotes {
+  width: 100%;
+  margin: 8px 0;
   padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1em;
 }
 
-#add-btn {
-  background-color: #000;
+#noteInput {
+  height: 100px;
+  resize: none;
+}
+
+button {
+  background-color: #4a90e2;
   color: white;
   border: none;
-  padding: 10px;
-  border-radius: 10px;
+  border-radius: 8px;
+  padding: 10px 15px;
   cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
 }
 
-#add-btn:hover {
-  background-color: #333;
+button:hover {
+  background-color: #3578d1;
 }
 
-#notes-container {
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 15px;
+#notesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
 .note {
-  background-color: #fff;
+  background-color: white;
   border: 1px solid #ddd;
   border-radius: 12px;
   padding: 15px;
+  width: 250px;
+  min-height: 150px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  text-align: left;
   position: relative;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
 }
 
-.note h2 {
-  margin: 0;
-  color: #222;
+.note h3 {
+  margin: 0 0 8px 0;
 }
 
 .note p {
-  color: #555;
-  margin-top: 8px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
-.note button {
-  margin-right: 5px;
-  background: none;
-  border: none;
-  color: #007bff;
+/* Tipos de hoja */
+.sheet-white {
+  background-color: #fff;
+}
+
+.sheet-lined {
+  background: repeating-linear-gradient(#fff, #fff 24px, #e0e0e0 25px);
+}
+
+.sheet-grid {
+  background-color: #fff;
+  background-image: linear-gradient(to right, #e0e0e0 1px, transparent 1px),
+                    linear-gradient(to bottom, #e0e0e0 1px, transparent 1px);
+  background-size: 25px 25px;
+}
+
+/* Tamaños */
+.sheet {
+  width: 300px;
+  height: 250px;
+}
+
+.card {
+  width: 200px;
+  height: 150px;
+}
+
+/* Botón eliminar */
+.deleteBtn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  color: #ff4d4d;
+  font-weight: bold;
   cursor: pointer;
+  font-size: 18px;
 }
-
-.note button:hover {
-  text-decoration: underline;
-}
-
-
-
-
 
