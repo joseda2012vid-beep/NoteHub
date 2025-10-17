@@ -1,63 +1,59 @@
+* { box-sizing: border-box; font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f9f9f9;
-  margin: 0;
-  padding: 20px;
+  background: #f5f5f5; transition: background 0.5s, background-image 0.5s, color 0.5s;
+  min-height: 100vh; padding: 20px;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+header { text-align: center; margin-bottom: 20px; }
+.top-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 10px; }
+select, input[type="text"], button { padding: 8px 12px; border-radius: 10px; border: none; outline: none; cursor: pointer; }
+input[type="text"] { min-width: 100px; }
+button:hover, select:hover { transform: scale(1.05); transition: transform 0.2s; }
 
-.logo {
-  width: 50px;
-  height: 50px;
-}
+.editor-container { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 20px; }
+#noteInput { width: 60%; min-width: 250px; height: 120px; padding: 12px; border-radius: 12px; border: 1px solid #ccc;
+             resize: none; background: rgba(255,255,255,0.9); backdrop-filter: blur(5px); transition: box-shadow 0.3s; }
+#noteInput:focus, #noteTitle:focus { box-shadow: 0 0 10px rgba(76, 175, 80, 0.5); }
 
-h1 {
-  margin: 0;
-}
+.editor-controls { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
 
-#notes-container {
-  margin-top: 20px;
-}
+#notesContainer { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
 
-.note-section {
-  background-color: #fff;
+/* Nota */
+.note {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
   padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  min-width: 200px; max-width: 300px;
+  word-wrap: break-word; white-space: pre-wrap;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
 }
+.note.sheet { width: 100%; }
+.note.card { width: 220px; }
+.note:hover { transform: scale(1.03); box-shadow: 0 12px 25px rgba(0,0,0,0.2); }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.note { animation: fadeInUp 0.5s ease; }
 
-.note-section textarea {
-  width: 100%;
-  border: none;
-  resize: vertical;
-  font-size: 16px;
-  font-family: inherit;
-  outline: none;
-  min-height: 80px;
+/* Botón eliminar dentro de la nota */
+.note .deleteBtn {
+  position: absolute; top: 5px; right: 5px; background: red; color: white;
+  border-radius: 50%; width: 25px; height: 25px; font-size: 16px;
+  display: flex; justify-content: center; align-items: center; cursor: pointer;
 }
+.note .deleteBtn:hover { background: darkred; transform: scale(1.2); }
 
-button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
+/* Estilos de hoja */
+.sheet-white { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(5px); }
+.sheet-lined { background: repeating-linear-gradient(white 0 28px, #e0e0e0 28px 29px); backdrop-filter: blur(5px); }
+.sheet-grid { background: repeating-linear-gradient(white 0 28px, #e0e0e0 28px 29px),
+             repeating-linear-gradient(#e0e0e0 0 29px, #e0e0e0 29px 30px); backdrop-filter: blur(5px); }
 
-button:hover {
-  background-color: #45a049;
-}
-
-}
+/* Modo oscuro */
+body.dark { background: #1e1e1e; color: white; }
+body.dark #noteInput, body.dark #noteTitle { background: rgba(50,50,50,0.7); color: white; }
 
 
 
