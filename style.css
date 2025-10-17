@@ -1,91 +1,63 @@
 body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom, #fceabb, #f8b500);
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
   margin: 0;
-  padding: 0;
+  padding: 20px;
+}
+
+.header {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  gap: 10px;
 }
 
-header {
-  background-color: #4CAF50;
-  color: white;
-  width: 100%;
-  padding: 20px 0;
-  text-align: center;
-  position: relative;
-}
-
-header .logo {
+.logo {
   width: 50px;
-  position: absolute;
-  left: 20px;
-  top: 15px;
+  height: 50px;
 }
 
 h1 {
   margin: 0;
 }
 
-.controls {
-  margin: 15px 0;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
+#notes-container {
+  margin-top: 20px;
 }
 
-button, select {
-  padding: 10px 15px;
+.note-section {
+  background-color: #fff;
+  padding: 15px;
+  margin-bottom: 15px;
   border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.note-section textarea {
+  width: 100%;
   border: none;
+  resize: vertical;
+  font-size: 16px;
+  font-family: inherit;
+  outline: none;
+  min-height: 80px;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 14px;
+  transition: background-color 0.2s;
 }
 
 button:hover {
   background-color: #45a049;
-  color: white;
 }
 
-.note-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  justify-content: center;
-  width: 95%;
 }
 
-.note {
-  width: 200px;
-  min-height: 150px;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-  background-color: white;
-  position: relative;
-  overflow: auto;
-  outline: none;
-}
-
-/* Tipos de hoja */
-.note.white { background-color: #fff; }
-.note.lined { background-image: linear-gradient(to bottom, #ccc 1px, transparent 1px); background-size: 100% 24px; }
-.note.grid { background-image: linear-gradient(to right, #ccc 1px, transparent 1px), linear-gradient(to bottom, #ccc 1px, transparent 1px); background-size: 24px 24px; }
-
-/* Botón eliminar dentro de la nota */
-.note .deleteBtn {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background-color: red;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 22px;
-  height: 22px;
-  cursor: pointer;
-}
 
 
