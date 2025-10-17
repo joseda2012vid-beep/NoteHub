@@ -1,26 +1,65 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NoteHub</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="app-container">
-    <h1>NoteHub</h1>
-    <div class="add-note">
-      <input type="text" id="note-title" placeholder="Título de la nota" />
-      <textarea id="note-text" placeholder="Escribe tu nota aquí..."></textarea>
-      <button id="add-btn">Agregar nota</button>
+  <h1>📝 NoteHub</h1>
+
+  <div id="controls">
+    <input type="text" id="noteTitle" placeholder="Título de la nota">
+    <textarea id="noteInput" placeholder="Escribe tu nota..."></textarea>
+    
+    <div class="selectors">
+      <select id="noteStyleSelect">
+        <option value="sheet-white">Hoja blanca</option>
+        <option value="sheet-lined">Hoja rayada</option>
+        <option value="sheet-grid">Hoja cuadriculada</option>
+      </select>
+
+      <select id="noteSizeSelect">
+        <option value="sheet">Tamaño carta</option>
+        <option value="card">Tarjeta</option>
+      </select>
     </div>
 
-    <div id="notes-container"></div>
+    <div class="sections">
+      <select id="sectionSelect">
+        <option value="General">General</option>
+      </select>
+      <input type="text" id="newSectionInput" placeholder="Nueva sección...">
+      <button id="addSectionBtn">➕ Agregar sección</button>
+    </div>
+
+    <div class="extras">
+      <button id="voiceBtn">🎙️ Dictar nota</button>
+      <button id="darkModeBtn">🌙 Modo oscuro</button>
+    </div>
+
+    <div class="backgrounds">
+      <label for="backgroundSelect">Fondo:</label>
+      <select id="backgroundSelect">
+        <option value="white">Blanco</option>
+        <option value="gradient">Gradiente</option>
+        <option value="space">Espacio</option>
+        <option value="forest">Bosque</option>
+        <option value="beach">Playa</option>
+        <option value="mountain">Montaña</option>
+      </select>
+      <input type="file" id="customBg" accept="image/*">
+    </div>
+
+    <input type="text" id="searchNotes" placeholder="Buscar notas...">
+
+    <button id="saveBtn">💾 Guardar nota</button>
   </div>
+
+  <div id="notesContainer"></div>
 
   <script src="script.js"></script>
 </body>
 </html>
-
-
