@@ -34,7 +34,25 @@ document.addEventListener("DOMContentLoaded", () => {
     textEl.textContent = text;
     note.appendChild(textEl);
 
-    // Botón eliminar
+    // ✏️ Editar nota al hacer doble clic
+    note.addEventListener("dblclick", () => {
+      const newTitle = prompt("Editar título:", titleEl.textContent);
+      const newText = prompt("Editar texto:", textEl.textContent);
+      if (newTitle !== null && newText !== null) {
+        titleEl.textContent = newTitle;
+        textEl.textContent = newText;
+
+        // Actualizar localStorage
+        const index = notes.findIndex(n => n.title === title && n.text === text);
+        if (index !== -1) {
+          notes[index].title = newTitle;
+          notes[index].text = newText;
+          localStorage.setItem("notes", JSON.stringify(notes));
+        }
+      }
+    });
+
+    // ❌ Botón eliminar
     const delBtn = document.createElement("div");
     delBtn.textContent = "×";
     delBtn.classList.add("deleteBtn");
@@ -154,6 +172,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 }); // Fin DOMContentLoaded
+
+// PWA
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   e.prompt();
